@@ -12,7 +12,7 @@ from paconn.common.util import display
 from paconn.settings.settingsbuilder import SettingsBuilder
 
 
-def login(client_id, tenant, authority_url, resource, settings_file, force):
+def login(client_id, tenant, authority_url, resource, settings_file, force, username=None, password=None):
     """
     Login command.
     """
@@ -26,5 +26,7 @@ def login(client_id, tenant, authority_url, resource, settings_file, force):
 
     get_authentication(
         settings=settings,
-        force_authenticate=force)
+        force_authenticate=force,
+        username=username,
+        password=password)
     display('Login successful.')

@@ -14,7 +14,7 @@ from paconn.authentication.profile import Profile
 from paconn.authentication.tokenmanager import TokenManager
 
 
-def get_authentication(settings, force_authenticate):
+def get_authentication(settings, force_authenticate, username, password):
     """
     Logs the user in and saves the token in a file.
     """
@@ -30,8 +30,11 @@ def get_authentication(settings, force_authenticate):
             tenant=settings.tenant,
             resource=settings.resource,
             authority_url=settings.authority_url)
-
-        credentials = profile.authenticate_device_code()
+        
+        if username and username.strip() and password and password.strip():
+            credentials = profile.authenticate_username_password(username, password)
+        else:
+            credentials = profile.authenticate_device_code()
 
         tokenmanager.write(credentials)
 

@@ -85,6 +85,18 @@ def load_arguments(self, command):
             required=False,
             help=SETTINGS_HELP)
         arg_context.argument(
+            'username',
+            options_list=['--username', '-u'],
+            type=str,
+            required=False,
+            help='User name to login.')
+        arg_context.argument(
+            'password',
+            options_list=['--password', '-p'],
+            type=str,
+            required=False,
+            help='Password for login.')
+        arg_context.argument(
             'force',
             options_list=['--force', '-f'],
             type=bool,
